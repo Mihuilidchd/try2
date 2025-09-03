@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>че сюда смотришь</title>
+<style>
+body {
+  font-family: sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #f0f0f0; /* Светло-серый фон */
+}
+
+.container {
+  text-align: center;
+  position: relative; /*  Позиционирование относительно контейнера для анимации */
+  width: 80%; /* Задаём ширину контейнера для управления его размером */
+  max-width: 500px; /* Максимальная ширина контейнера */
+}
+
+#initial-text {
+  font-size: 24px;
+  cursor: pointer;
+  padding: 20px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+  position: absolute; /* Абсолютное позиционирование для анимации */
+  top: 0;
+  left: 0;
+  width: calc(100% - 42px); /*  100% минус padding и border */
+  box-sizing: border-box; /* Включаем border-box */
+  opacity: 1;
+  transition: opacity 0.5s ease, transform 0.5s ease; /* Добавляем анимацию прозрачности и трансформации */
+}
+
+#initial-text:hover {
+  background-color: #eee;
+}
+
+#bouquet-image {
+  display: block; /*  Изначально показываем, но с прозрачностью 0 */
+  margin-top: 20px;
+  max-width: 100%;
+  height: auto;
+  opacity: 0; /* Изначально делаем невидимым */
+  transition: opacity 0.5s ease, transform 0.5s ease; /* Добавляем анимацию прозрачности и трансформации */
+  transform: translateY(20px); /* Смещаем чуть вниз изначально */
+
+}
+
+/* Класс для активации анимации */
+.show-bouquet {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
+
+.hide-text {
+  opacity: 0 !important;
+  transform: translateY(-20px) !important; /* Смещаем чуть вверх при исчезновении */
+}
+
+/* Адаптивные стили для маленьких экранов (телефонов) */
+@media (max-width: 600px) {
+  #initial-text {
+    font-size: 18px;
+    padding: 15px;
+    width: calc(100% - 32px); /* Корректируем ширину для маленьких экранов */
+  }
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+  <div id="initial-text">Нажми сюда для сюрприза!</div>
+  <img id="bouquet-image" src="bouquet.jpg" alt="Букет цветов">
+</div>
+
+<script>
+  const initialText = document.getElementById('initial-text');
+  const bouquetImage = document.getElementById('bouquet-image');
+
+  initialText.addEventListener('click', () => {
+    initialText.classList.add('hide-text'); // Добавляем класс для скрытия текста
+    bouquetImage.classList.add('show-bouquet'); // Добавляем класс для показа букета
+  });
+</script>
+
+</body>
+</html>
